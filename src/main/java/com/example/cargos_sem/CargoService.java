@@ -43,27 +43,50 @@ public class CargoService {
         repo.deleteById(Math.toIntExact(id));
     }
 
-    public String generateBarChart() throws IOException {
+    public String generateBarChart_send() throws IOException {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        List<Object[]> playData = repo.countByDayChart();
+        List<Object[]> cargoSendData = repo.countByDayChart_send();
 
-        for (Object[] data : playData) {
+        for (Object[] data : cargoSendData) {
             String date = data[0].toString();
             Long count = (Long) data[1];
             dataset.addValue(count, "Кол-во", date);
         }
 
         JFreeChart chart = ChartFactory.createBarChart(
-                "Количество грузов по дням",
+                "Количество грузов по дням отправки",
                 "Даты",
                 "Количество грузов",
                 dataset
         );
 
-        String path = "src/main/resources/static/images/bar_chart.png";
+        String path = "src/main/resources/static/images/bar_chart_send.png";
         ChartUtils.saveChartAsPNG(new File(path), chart, 800, 600);
-        return "/images/bar_chart.png";
+        return "/images/bar_chart_send.png";
+    }
+
+    public String generateBarChart_arr() throws IOException {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        List<Object[]> cargoArrData = repo.countByDayChart_arr();
+
+        for (Object[] data : cargoArrData) {
+            String date = data[0].toString();
+            Long count = (Long) data[1];
+            dataset.addValue(count, "Кол-во", date);
+        }
+
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Количество грузов по дням прибытия",
+                "Даты",
+                "Количество грузов",
+                dataset
+        );
+
+        String path = "src/main/resources/static/images/bar_chart_arr.png";
+        ChartUtils.saveChartAsPNG(new File(path), chart, 800, 600);
+        return "/images/bar_chart_arr.png";
     }
 
 

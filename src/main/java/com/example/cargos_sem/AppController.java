@@ -72,13 +72,16 @@ public class AppController {
 
     @RequestMapping("/chart")
     public String getChart(Model model) {
-        String chart = null;
+        String chart_send = null;
+        String chart_arr = null;
         try {
-            chart = service.generateBarChart();
+            chart_send = service.generateBarChart_send();
+            chart_arr = service.generateBarChart_arr();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        model.addAttribute("chart", chart);
+        model.addAttribute("chart_send", chart_send);
+        model.addAttribute("chart_arr", chart_arr);
 
         return "chart";
     }
