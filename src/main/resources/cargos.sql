@@ -60,3 +60,5 @@ INSERT INTO cargos (name, content, sending_city, sending_date, arrival_city, arr
     ('Cargo 48', 'Furniture', 'Rostov-on-Don', '2024-10-03', 'Moscow', '2024-10-07'),
     ('Cargo 49', 'Toys', 'Moscow', '2024-10-05', 'Yekaterinburg', '2024-10-10'),
     ('Cargo 50', 'Books', 'Saint Petersburg', '2024-10-01', 'Kazan', '2024-10-04');
+
+# drop table cargos;
